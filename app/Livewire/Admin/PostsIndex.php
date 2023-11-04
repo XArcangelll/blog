@@ -23,7 +23,13 @@ class PostsIndex extends Component
 
         $searchTerm = '%'.$this->search.'%';
 
+        if(auth()->user()->roles->pluck("id")->contains(1)){
+            $posts = Post::where('name', 'LIKE', $searchTerm)->latest('id')->paginate(8);
+        }else{
+            
         $posts = Post::where('user_id',auth()->user()->id)->where('name', 'LIKE', $searchTerm)->latest('id')->paginate(8);
+        }
+
 
 
 

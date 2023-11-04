@@ -20,11 +20,11 @@
 
 
         <div class="card">
-
+            @can('admin.tags.create')
             <div class="card-header">
                 <a class="btn btn-success " href="{{route('admin.tags.create')}}">Agregar Etiquetas</a>
             </div>
-
+@endcan
             <div class="card-body">
                     <table class="table table-striped">
                         <thead>
@@ -40,13 +40,16 @@
                                     <tr>
                                         <td>{{$tag->id}}</td>
                                         <td>{{$tag->name}}</td>
-                                         <td width="10px">
+                                         {{-- <td width="10px">
                                             <a class="btn btn-secondary btn-sm" href="{{route('admin.tags.show',$tag)}}"><i class="fa fa-eye"></i></a>
-                                        </td>
+                                        </td> --}}
                                         <td width="10px">
+                                            @can('admin.tags.edit')
                                             <a class="btn btn-primary btn-sm" href="{{route('admin.tags.edit',$tag)}}">Editar</a>
+                                            @endcan
                                         </td>
                                         <td width="10px">
+                                            @can('admin.tags.destroy')
                                            <form action="{{route('admin.tags.destroy',$tag)}}" method="post">
                                             @method('delete')
                                             @csrf
@@ -54,6 +57,7 @@
                                                 Eliminar
                                             </button>
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                             @endforeach

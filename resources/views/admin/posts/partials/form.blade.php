@@ -12,7 +12,7 @@
     {!! Form::text('slug', null, [
         'class' => 'form-control',
         'placeholder' => 'Ingrese Nombre del Slug',
-        'readonly',
+        'readonly'
     ]) !!}
     @error('slug')
         <span class="text-danger">{{ $message }}</span>

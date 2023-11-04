@@ -16,7 +16,7 @@
                             @endforeach
                         </div>
 
-                        <h1  class="text-4xl  text-white  font-bold mt-2 py-4 drop-shadow-lg leading-9">
+                        <h1 style="text-shadow: black 2px 0 10px;" class="text-4xl  text-white  font-bold mt-2 py-4 drop-shadow-lg leading-9">
                             <a href="{{ route('posts.show', $post)  }}" >{{ $post->name }}</a>
                         </h1>
                     </div>

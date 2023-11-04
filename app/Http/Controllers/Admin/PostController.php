@@ -8,16 +8,30 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+
+
+     public function __construct(){
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create','store');
+        $this->middleware('can:admin.posts.edit')->only('edit','update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+     }
+
+
+    public function index(){
+    // 
+    //     $this->authorize('indice', Post::class);
+    //     $user = auth()->user();
+    //   return  $user->permissions;
+
         return view("admin.posts.index");
     }
 
@@ -27,6 +41,7 @@ class PostController extends Controller
     public function create()
     {
 
+        
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
 
@@ -47,6 +62,17 @@ class PostController extends Controller
         // php artisan storage::link para q se muestre el acceso directo en public
         //return  Storage::put("posts",$request->file('file'));
 
+
+        // $slug =  Str::slug($request->name);
+
+        // if($slug != $request->slug) return redirect()->route('admin.posts.index');
+
+        // $this->authorize('crear');
+
+
+        $this->authorize('crear', Post::class);
+
+
         $post = Post::create($request->all());
 
         if ($request->file("file")) {
@@ -62,7 +88,7 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);
         }
 
-        return redirect()->route('admin.posts.edit', $post)->with('info', "El Post se creó con éxito");
+        return redirect()->route('admin.posts.index')->with('info', "El Post se creó con éxito");
     }
 
     /**
@@ -70,6 +96,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
+
+
         return view("admin.posts.show", compact('post'));
     }
 
@@ -78,6 +107,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+
+
+        // $this->authorize('author',$post);
+
+        $this->authorize('verEdicion', $post);
+        // $this->autorizacion($post);
+
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
         return view("admin.posts.edit", compact('post', 'categories', 'tags'));
@@ -89,7 +125,13 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
 
-       
+
+        $this->autorizacion($post);
+        $this->authorize('editar', Post::class);
+
+
+        
+
 
         $post->update($request->all());
 
@@ -130,6 +172,21 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        
+        $this->authorize('eliminar', $post);
+        $post->delete();
+        return  redirect()->route("admin.posts.index")->with("info", "El post se eliminó con éxito");
     }
+
+     private function autorizacion($post){
+        
+    //     $response =  Gate::inspect('author', $post);
+
+    //     if(!$response->allowed()){
+    //         return redirect()->route("admin.posts.index")->with("info", "Usted no tiene permitido eso");
+    //     } 
+
+    $this->authorize('author',$post);
+
+     }
 }

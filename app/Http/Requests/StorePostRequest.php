@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StorePostRequest extends FormRequest
 {
@@ -12,7 +13,8 @@ class StorePostRequest extends FormRequest
     public function authorize(): bool
     {
 
-        return $this->user_id == auth()->user()->id;
+        // return $this->user_id == auth()->user()->id;
+        return true;
     }
 
     /**
@@ -24,7 +26,16 @@ class StorePostRequest extends FormRequest
     {
         $rules = [
             "name" => "required",
-            "slug" => "required|unique:posts",
+            "slug" => [
+                "required",
+                "unique:posts",
+                function ($attribute, $value, $fail) {
+                    $slug = Str::slug($this->name); // Convierte el name en un slug
+                    if ($value !== $slug) {
+                        $fail("$attribute debe ser igual al slug de name.");
+                    }
+                },
+            ],
             "status" => "required|in:1,2",
             "file" => 'image'
         ];

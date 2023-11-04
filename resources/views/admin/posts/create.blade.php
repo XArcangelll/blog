@@ -14,7 +14,7 @@
 
             {!! Form::open(['route' => 'admin.posts.store','files'=>true]) !!}
 
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
+            {{-- {!! Form::hidden('user_id', auth()->user()->id) !!} --}}
 
                 @include('admin.posts.partials.form')
 
@@ -29,16 +29,14 @@
 
 @section('css')
     <style>
-        .image-wrapper {
+     .image-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
         }
 
         .image-wrapper img {
-            position: absolute;
             object-fit: cover;
-            width: 100%;
-            height: 100%;
+            width: 75%;
+            height: auto;
         }
     </style>
 @stop

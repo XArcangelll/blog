@@ -15,7 +15,7 @@
 
                 <figure>
                     @if ($post->image)
-                    <img class="rounded-lg w-full h-80 object-cover object-center" src="{{Storage::url($post->image->url)}}">
+                    <img  style="width: 75%" class="rounded-lg  h-auto object-cover object-center" src="{{Storage::url($post->image->url)}}">
                     @else
                     <img class="rounded-lg w-full h-72 object-cover object-center" src="https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg"
                     alt="{{ $post->name }}">

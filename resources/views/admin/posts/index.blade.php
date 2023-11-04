@@ -10,6 +10,15 @@
 @stop
 
 @section('content')
+
+    
+@if (session('info'))
+<ul class="list-group">
+          <li class="list-group-item list-group-item-success mb-3"> {{session('info')}}</li>
+</ul>
+@endif
+
+
    @livewire('admin.posts-index')
 @stop
 

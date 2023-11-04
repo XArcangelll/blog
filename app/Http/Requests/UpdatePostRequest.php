@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -33,7 +33,16 @@ class UpdatePostRequest extends FormRequest
 
         $rules = [
             "name" => "required",
-            "slug" => "required|unique:posts,slug,".$post->id,
+            "slug" => [
+                "required",
+                "unique:posts,slug,".$post->id,
+                function ($attribute, $value, $fail) {
+                    $slug = Str::slug($this->name); // Convierte el name en un slug
+                    if ($value !== $slug) {
+                        $fail("$attribute debe ser igual al slug de name.");
+                    }
+                },
+            ],
             "status" => "required|in:1,2",
             "file" => 'image',
             'imagen_actual' => 'present'
