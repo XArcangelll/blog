@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+   // protected $table = "nombre de la tabla en tu bd"; esto lo usas en todo caso no respetes la nomenclatura de tabla y modelo con laravel asi q forzosamente usas el $table para escribir con que tabla se vinculara
+
     protected $fillable = ["name","slug"];
 
     public function getRouteKeyName(){

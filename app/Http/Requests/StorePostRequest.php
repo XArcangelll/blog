@@ -36,13 +36,14 @@ class StorePostRequest extends FormRequest
                     }
                 },
             ],
+            "category_id"=> "required|exists:categories,id",
             "status" => "required|in:1,2",
             "file" => 'image'
         ];
 
         if($this->status == 2){
             $rules = array_merge($rules,[
-                "category_id"=> "required|exists:categories,id",
+              
                 "tags"=>"required|array",
                 "tags.*"=>"exists:tags,id",
                 "extract"=> "required",

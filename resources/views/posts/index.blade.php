@@ -8,7 +8,6 @@
                     style="background-image: url(@if($post->image) {{ Storage::url($post->image->url)}} @else https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg @endif)" alt="{{ $post->name }})">
 
                     <div class="w-full h-full px-8 flex flex-col justify-center">
-
                         <div>
                             @foreach ($post->tags as $tag)
                                 <a href="{{ route('posts.tag', $tag) }}"

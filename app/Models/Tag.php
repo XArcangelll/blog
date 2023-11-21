@@ -12,9 +12,11 @@ class Tag extends Model
 
     protected $fillable = ["name","slug","color"];
 
-    public function getRouteKeyName(){
-        return "slug";
-    }
+    // public function getRouteKeyName(){
+    //     return "slug";
+    // }
+
+    protected $hidden = ['created_at','updated_at'];
 
 
      //relacion muchos a muchos

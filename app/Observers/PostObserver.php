@@ -32,6 +32,7 @@ class PostObserver
       
         if($post->image){
             Storage::delete($post->image->url);
+            $post->image->delete();
         }
 
     }

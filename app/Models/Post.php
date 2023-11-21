@@ -29,6 +29,7 @@ class Post extends Model
 
 
     //relacion 1 a 1 polimorfica
+    //el imageable debe ser igual al del modelo image osea el metodo imageable por eso pones 'imageable'
     public function image(){
         return $this->morphOne(Image::class,'imageable');
     }

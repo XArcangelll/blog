@@ -17,6 +17,9 @@ Route::resource('users', UserController::class)->only(['index', 'edit', 'update'
 });
 
 
+
+
+
 Route::get('permissions/{user}/edit',[PermissionController::class,'edit'])->name('admin.permissions.edit')->missing(function () {
   return redirect()->route("admin.users.index")->withErrors("Hubo un error inesperado");
 }); 

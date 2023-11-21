@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -64,9 +65,9 @@ class TagController extends Controller
         if($slug != $request->slug) return redirect()->route('admin.tags.index');
         
 
-        $category = Tag::create($request->all());
+        $tag = Tag::create($request->all());
 
-        return redirect()->route('admin.tags.edit',$category)->with('info',"La Etiqueta se creó con éxito");
+        return redirect()->route('admin.tags.edit',$tag)->with('info',"La Etiqueta se creó con éxito");
     }
 
     /**

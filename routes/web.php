@@ -14,18 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Si quieres crear un componente php artisan make:componente Componente
+//Si quieres crear un componente php artisan make:component Componente
 
 Route::fallback(function(){
   return redirect()->route("posts.index");
 });
+
+
+
+//aqui el detalle de {tag} o {category} es que en el modelo debes escribir esto
+// public function getRouteKeyName(){
+//     return "slug";
+// }
+//para que filtre mediante el slug y no por el id 
+//en caso de que no quieras escribir eso para que filtre mediante el slug simplemente
+//aqui en la ruta escribes {post:slug} y se encargara de filtrar mediante el slug 
+
 
 Route::controller(PostController::class)->group(function () {
     Route::get('/', 'index')->name("posts.index");
     Route::get('post/{post:slug}',"show")->name('posts.show')->missing(function(){
         return redirect()->route("posts.index");
     });
-    Route::get('category/{category:slug}','category')->name('posts.category')->missing(function(){
+    Route::get('category/{category}','category')->name('posts.category')->missing(function(){
         return redirect()->route("posts.index");
     });
 

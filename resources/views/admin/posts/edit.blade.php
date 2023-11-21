@@ -27,8 +27,6 @@
 
             {!! Form::hidden("imagen_actual",  isset($post->image) ? $post->image->url : "",["id"=>"imagen_actual"] ) !!}
 
-        
-
                 @include('admin.posts.partials.form')
 
             {!! Form::submit('Actualizar Post', ['class' => 'btn btn-success']) !!}
