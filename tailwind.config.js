@@ -22,7 +22,8 @@ export default {
         'bg-indigo-600',
         'bg-gray-700',
         'text-white',
-        'text-gray-300'
+        'text-gray-300',
+        'h-72'
     ],
 
     theme: {
