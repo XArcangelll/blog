@@ -19,7 +19,10 @@ export default {
         'bg-green-600',
         'bg-pink-600',
         'bg-purple-600',
-        'bg-indigo-600'
+        'bg-indigo-600',
+        'bg-gray-700',
+        'text-white',
+        'text-gray-300'
     ],
 
     theme: {
