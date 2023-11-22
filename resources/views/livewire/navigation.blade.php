@@ -8,7 +8,7 @@
         
         <button x-on:click="open = true" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <span class="absolute -inset-0.5"></span>
-          <span class="sr-only">Open main menu</span>
+          {{-- <span class="sr-only">Open main menu</span> --}}
           <!--
             Icon when menu is closed.
 
@@ -53,7 +53,7 @@
         <!-- boton notificacion -->
         <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span class="absolute -inset-1.5"></span>
-          <span class="sr-only">View notifications</span>
+          {{-- <span class="sr-only">View notifications</span> --}}
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
           </svg>
@@ -65,7 +65,7 @@
             <button x-on:click="open = !open" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
            
               <span class="absolute -inset-1.5"></span>
-              <span class="sr-only">Open user menu</span>
+              {{-- <span class="sr-only">Open user menu</span> --}}
               <img class="h-8 w-8 rounded-full" src="{{auth()->user()->profile_photo_url}}" alt="">
             </button>
           </div>
